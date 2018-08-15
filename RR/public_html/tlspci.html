@@ -1,0 +1,193 @@
+﻿<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  
+
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content=" SOX - COSO - RISK - NIST - PCI - DSS - CYBER - GDPR">
+        <meta name="keywords" content="pci,dss,gdpr,cyber,risk,nist,sox,coso">
+        <meta name="author" content="IDZIK J">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootswatch.min.css">
+
+            <style>
+                    .carousel-inner > .item > img,
+                    .carousel-inner > .item > a > img {
+                    width: 100%;
+                    margin: auto;
+                                }   
+  
+        </style>
+        
+       
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+ <div class="container">   
+   <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">Home </a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+          <li>
+              
+            </li>
+            <li>
+              <a href="gdpr.html">GDPR </a>
+            </li>
+            <li>
+             <a href="bppp.html">PCI DSS </a>
+            </li>
+          <li>
+            <a href="scf.html">PSD2</a></li><li><a href="contact.html">Contact</a>
+            </li>
+       
+          </ul>
+
+
+
+        </div>
+    </div>
+    </div>
+        
+ 
+
+   
+          <div class="container">
+
+  <br>
+              <h4>TLS/SSL migration for PCI DSS deadline in June 2018</h4>     
+                <br>
+              <p>PCI Council published several materials that should help to understand the problem and guide the providers with migration effort: </p>
+<p> • Bulletin on Migrating from SSL and Early TLS </p>
+<p> • Information Supplement on Migrating from SSL and Early TLS </p> 
+<p> • FAQs: 1372, 1373 </p> 
+             <br>
+            
+              <p>PCI TLS migration can be summarized in two steps, depending on the payment channel used to process the card authorisation/payment:</p>
+<p> 1. For card-present transactions install the latest updates or perform upgrade of the software on payment terminals, according to guidance provided by POS terminal provider. </p>
+<p> 2. For card-not-present transactions processed as “e-commerce” amend the configuration on www servers and “API host” servers to eliminate the cipher suites that are considered to be “weak” or for which known vulnerabilities have been published, for example: BEAST, POODLE, Heartbleed, Logjam, Sweet32, ROBOT, etc. </p> 
+            <br> 
+<p><strong>Internal usage of TLS over LAN: be compliant with PCI DSS “strong cryptography” </strong></p>
+<p>Described above usage of TLS and selection of TLS cipher suites refers to external facing server-side devices that are used either by web browsers or “API clients” (mobile/web application) to secure transfer of card data over public networks in line with requirement 4.1 and 4.2 of PCI DSS. The standard does not require to encrypt transmission of card data inside the organisation’s network – cardholder data can be sent within private networks in clear text, so no encryption is needed (or “weak encryption” is allowed) for transmission of sensitive card details over LAN. </p>
+<br>
+<p>In terms of the internal usage of TLS as valid “strong cryptography” mechanism per PCI DSS, for example to achieve compliance with requirement 8.2.1 of rendering all authentication credentials unreadable during transmission, if password hashing is not in use during authentication (POP3, IMAP, SMTP, AUTH, MySQL), it is vital to ensure that all systems and their internal components support communication over higher version of TLS (v1.2 is “strongly encouraged” by the PCI Council). On the example of “programming/computing/storage” environment based on Microsoft products it is important to ensure that all system modules support TLS higher than v1.0: Win Server, MS SQL, ADO.NET client, .NET framework, etc. </p>
+<br>
+             <p><strong>TLS Intro</strong></p>
+             <p>TLS (Transport Layer Security) and its earlier version SSL (Secure Sockets Layer) is a set of cryptographic protocols used to secure data in-transit. It’s most popular usage is to encrypt the exchange of data between user’s browser and www server over https. It is used however in many other forms of communications where there is a need to provide data integrity and privacy/confidentiality, for example: host-to-site VPN tunnels like OpenVPN, OpenConnect, and its commercial implementation e.g. Cisco AnyConnect or Juniper Pulse Secure, secure email connections over STARTTLS, or encrypted VoIP over SIP (Session Initiation Protocol). </p>
+<p>SSL was designed to work over TCP (Transmission Control Protocol) but there is also a standard for UDP (User Datagram Protocol), namely DTLS (Datagram Transport Layer Security). Most TLS programming libraries are free and licenced as open source software – detailed comparison can be found on Wikipedia: https://en.wikipedia.org/wiki/Comparison_of_TLS_implementations </p>
+ <br>
+<p>Broadly speaking each TLS session in a browser consists of two (layers) protocols: </p>
+<p> • TLS handshake is the initial layer used to exchange the information needed to secure the transfer of data by both sides: specific version of TLS, suggested and accepted cipher suites, format of messages, order of exchange, etc. </p>
+<p> • TLS record protocol is the exchange of data between a user and a server and is responsible for encrypting and authenticating the messages, but also dividing and reassembling sent messages. </p> 
+<br>     
+ <p><strong>Hardening external TLS – choosing the secure cipher suits </strong></p>
+<p>To secure TLS communication certain ciphers must be disabled on “server-side” devices responsible for establishing TLS handshake: www/API servers, load-balancers, firewalls, WAFs (Web Application Firewalls) and any other device that is responsible for accepting incoming TLS connections to IT environment. Initial guidance can be found for example on Mozilla Wiki as “Recommended” or “Intermediate” configuration for TLS servers. </p>
+<br>
+ <p>The main problem with eliminating most of available cipher suits is the possibility of cutting off users with older devices/browsers that will not be able to establish the connection after removal of all supported cipher suits on their client side, and therefore rejecting to provide service to retail customers, or alternatively forcing them to upgrade their outdated devices. It seems like there is very little choice in terms of secure TLS cipher suites: </p>
+<p>  • RC4 is not recommend in TLS implementation after multiple vulnerabilities were published in 2013 by N. AlFardan, D. Bernstein, K. Paterson, B. Poettering, J. Schuldt. </p>
+<p>  • MD5 was officially classified as "cryptographically broken and unsuitable for further use" by the Software Engineering Institute in 2010. </p>
+<p>  • Poodle attack that downgrades SSL/TLS connection to earlier versions eliminated initially all SSL implementations, and in 2014 also specific TLS 1.0-1.2 protocols due to exploits that target CBC (Cipher Block Chaining) encryption mode. </p>
+<p>  • Sweet32 vulnerability almost eliminated the usage of 3DES algorithm for symmetric encryption, so broadly speaking we are left with AES (AES GCM is preferred), or less popular ChaCha20 (a variant of Salsa20/20) published by Daniel J. Bernstein in 2008. </p>
+<p>  • Recent “re-discovery” of ROBOT attack eliminated the usage of RSA for secure key exchange, however Rivest-Shamir-Adleman algorithm is still considered to be safe for TLS signatures. </p>            
+<p>  • Logjam attack on weak Diffie-Hellman (<=1024 bit) mandates the usage of ECDHE (Elliptic-curve Diffie–Hellman) or stronger but slower Diffie-Hellman key exchange (>2048 bit). </p>
+<p>  • Due to collision in SHA-1 discovered earlier but confirmed practically only this year hashing should be used with higher implementation of “signature algorithms”, namely SHA-2 family (SHA256, SHA384, SHA512). </p>
+<p>  • For Message Authentication HMAC based on SHA-2 is preferred, or Daniel J. Bernstein’s Poly1305, typically used in conjunction with ChaCha20 (ChaCha20+Poly1305). </p>
+<p>  • For digital signatures which are responsible for encrypting a representation of a message (a message digest), RSA (Rivest-Shamir-Adleman) and DSA (Digital Signature Algorithm) are acceptable, but DSA newer implementation ECDSA (Elliptic Curve Digital Signature Algorithm) is recommended. </p>
+<p>  • PCI Council from July 2018 mandates the usage of secure version of TLSv1.1 or TLSv1.2, so all earlier implementations of TLS/SSL must be abandoned. </p>
+<p>  • Forward Secrecy which prevents compromising of past session keys in case of compromise of long-term keys is only available in TLS with the usage of Diffie-Hellman or Elliptic-curve Diffie–Hellman key exchange. </p>
+<br>
+<p>To validate how changes introduced on a server side are going to impact end-user devices and which of them are not going to be able to complete TLS handshake successfully, and therefore initiate TLS connection it is worth to perform a handshake simulation with each of the test devices and specific configuration that is going to be used against the server. For initial overview of impact on most popular operating systems (Android, Apple iOS, MS Windows) and browsers (Chrome, Mozilla, MS IE) test your new settings with “SSL Labs” provided by Qualys, Inc. and examine “Handshake Simulation” section: https://www.ssllabs.com/ssltest/analyze.html </p> 
+<br>
+<p><strong>Hardening example on most popular web-servers: MS ISS/Apache HTTP/Nginx </strong></p>
+<p>Configuration of selected TLS cipher suites on Microsoft’s web server: Internet Information Services (IIS) on Win Server 2008/2012/2016 can be done by changing manually the entries in the system registry. The easiest way however to apply chosen cipher suites on MS ISS is to install the free tool offered by Nartac Software “IIS Crypto”, which offers easy to use tick-boxes to implement required TLS configuration. </p> 
+<p>Most popular Linux based web-servers: Apache HTTP and Nginx, can be easily configured with the use of online tool maintained on Mozilla GitHub: “SSL Configuration Generator” that enables to choose desired parameters, server version, etc. and advises the required configuration that can be amended within minutes by copying the content of the wizard and pasting it directly into the server console. </p> 
+<br>
+<p><strong>TLS cipher suites verification </strong></p>
+<p>After examining the available cipher suites administrators may not be left with much choice to provide the service to retail customers. In fact, more less similar problem is faced by TLS standard regulators (ietf.org) which defer to publish the long-awaited update of TLS to version 1.3. Newest implementation should resolve most security issues with TLS protocol but also simplify full TLS handshake from two round-trips to only one round-trip and therefore speed up the load of TLS sites over slower connection.</p>
+<p>There are several tools available that can help with identifying which TLS cipher suites are setup on the server-side:</p>
+<p>Bash/Python scripts:</p>
+<p> • NMAP scripting engine: https://svn.nmap.org/nmap/scripts/ssl-enum-ciphers.nse</p>
+<p> • CipherScan: https://github.com/mozilla/cipherscan</p>
+<p> • SSLyze: https://github.com/nabla-c0d3/sslyze</p>
+<p> • SSL Scan: https://github.com/rbsec/sslscan</p>
+<p>On-line tools: </p>
+<p> • SSL Labs </p>
+<p> • High-Tech Bridge </p>
+<p> • SSL Shoper </p>
+<br>
+<p><strong>Additional information </strong></p>
+<p>Cloudflare blog about implementation of TLS v1.3 at https://blog.cloudflare.com/tls-1-3-explained-by-the-cloudflare-crypto-team-at-33c3/. </p>
+<p>Cisco publication: “Next Generation Encryption” at https://www.cisco.com/c/en/us/about/security-center/next-generation-cryptography.html. </p>
+<p>eSTREAM, the ECRYPT Stream Cipher Project at http://www.ecrypt.eu.org. </p>
+
+<br>
+<p><strong>Links: </strong></p>
+<p>https://blog.pcisecuritystandards.org/impact-new-migration-dates-ssl-early-tls</p>
+<p>https://cdn2.hubspot.net/hubfs/281302/Resources/Migrating_from_SSL_and_Early_TLS_-v12.pdf</p>
+<p>https://www.pcisecuritystandards.org/documents/Migrating_from_SSL_Early_TLS_Information_Supplement_v1.pdf</p>
+<p>https://pcissc.secure.force.com/faq/articles/Frequently_Asked_Question/How-should-entities-apply-the-new-SSL-TLS-migration-dates-to-Requirements-2-2-3-2-3-and-4-1-for-PCI-DSS-v3-1</p>
+<p>https://pcissc.secure.force.com/faq/articles/Frequently_Asked_Question/How-should-entities-complete-their-ROC-or-SAQ-for-PCI-DSS-v3-1-using-the-new-SSL-TLS-migration-dates</p>
+<p>https://tools.ietf.org/html/rfc7457</p>
+<p>https://openvpn.net/</p>
+<p>http://www.infradead.org/openconnect/</p>
+<p>https://www.cisco.com/c/en/us/products/security/anyconnect-secure-mobility-client/index.html</p>
+<p>https://www.pulsesecure.net/</p>
+<p>https://wiki.mozilla.org/Security/Server_Side_TLS</p>
+<p>http://www.isg.rhul.ac.uk/tls/</p>
+<p>http://www.kb.cert.org/vuls/id/836068</p>
+<p>https://technet.microsoft.com/en-us/library/dn786418(v=ws.11).aspx</p>
+<p>https://www.ietf.org/rfc/rfc5246.txt</p>
+<p>https://tools.ietf.org/html/draft-ietf-tls-tls13-22</p>
+<p>https://blog.cloudflare.com/introducing-tls-1-3/</p>
+<p>https://www.microsoft.com/en-us/download/details.aspx?id=55266</p>
+<p>https://support.microsoft.com/en-us/help/3135244/tls-1-2-support-for-microsoft-sql-server</p>
+          </div>
+
+   
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    
+    <hr>
+
+   <footer>
+        <p>   &copy 2018 Juliusz Idzik, Regon: 240613260, VAT: 6681782939, Company No: 6408 </p>
+        
+         </footer>
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <!-- jQuery library (served from Google) -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="/js/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/lib/jquery.bxslider.css" rel="stylesheet" />
+        
+        
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+
+
+    </body>
+</html>

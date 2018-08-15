@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  
+
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content=" SOX - COSO - RISK - NIST - PCI - DSS - CYBER - GDPR">
+        <meta name="keywords" content="pci,dss,gdpr,cyber,risk,nist,sox,coso">
+        <meta name="author" content="IDZIK J">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootswatch.min.css">
+
+            <style>
+                    .carousel-inner > .item > img,
+                    .carousel-inner > .item > a > img {
+                    width: 100%;
+                    margin: auto;
+                                }   
+  
+        </style>
+        
+       
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+ <div class="container">   
+   <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">Home </a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+          <li>
+              
+            </li>
+            <li>
+              <a href="gdpr.html">GDPR </a>
+            </li>
+            <li>
+             <a href="bppp.html">PCI DSS </a>
+            </li>
+          <li>
+            <a href="scf.html">PSD2</a></li><li><a href="contact.html">Contact</a>
+            </li>
+       
+          </ul>
+
+
+
+        </div>
+    </div>
+    </div>
+        
+ 
+
+   
+          <div class="container">
+
+  <br>
+              <h4>Phishing techniques and safeguard options</h4>     
+              <br>
+               <p>There have been extensive studies published recently about the state of phishing and social engineering techniques: </p>
+<p> • Data Breaches, Phishing, or Malware? Understanding the Risks of Stolen Credentials by Google, University of California, International Computer Science Institute </p>
+<p> • Phish in a Barrel by Duo Labs Report </p> 
+             <br>
+            
+              <p>Despite continuous user education and public awareness, phishing seems to be still the main technique used by adversary actors to initiate the compromise of individual accounts or obtaining unauthorised access to organisation’s resources. In recent years the situation has become far more worrying due to wide spread adoption of the cloud model, in which an email address is usually used for identification of users and as a first step in forgotten password retrieval mechanism. Compromise of authentication systems that are based on forgotten password feature which is sent to user’s email address is typically the most easy and effortless technique to gain access to an organisation’s protected resources. After an adversary can get an unrestricted access to a mailbox account there are very little further difficulties in unlocking the entrance to an organisation’s protected resources.</p>
+ <br>
+              <p>The most widely used social engineering techniques by threat actors according to above reports are:</p>
+ <p>  1. Reported public credential leaks: Yahoo, MySpace, LinkedIn, Adobe, Badoo, Dropbox, etc.</p>
+<p>  2. Phishing kits based on HTML/PHP source code or .htaccess files, listed on: Phishtank, OpenPhish</p>
+<p>  3. Keyloggers: HawkEye, Predator Pain, Cyborg Logger</p>
+
+                  <br>
+            
+                <p>One of the worrying aspects of phishing is the growing popularity of projects like Lets Encrypt (backed by Google) and still active but deprecated StartSSL which enable almost automated and free creation of SSL certificates to secure web traffic over public networks for any organisation. On the other hand, it is easy to use, instant and free of charge tool to hide the identity of adversary actors and emulate victims’ trusted contacts and business connections. Since SSL certificates offer identity confirmation, confidentiality and integrity of data in-transit, it almost impossible to distinguish between genuine and fake sources of data. Browser vendors trust “Lets Encrypt” as a public Certificate Authority (CA) in order not to cut down legitimate organisations that use the service of unrestricted SSL/TLS encryption. However, projects that don’t have official support from one of the leading US tech companies are being censored and support for them as a trusted public CA is being withdrawn by main browser vendors: StartSSL, StartCom, WoSign. </p>
+ <br>
+                <p>Social engineering can take many forms but the most widespread and alarming is the re-use of authentication details that were exposed publicly in third-party breaches. We have witnessed many instances of login credentials being exposed in recent years, e.g. according to non-profit organisation ITRS (Identity Theft Resource Center) for the past 12 years there were more than eight thousand public breaches confirmed that uncovered billions of individual records. The re-use of the same “login+password” between different authentication systems (or cloud service providers) is the biggest threat to unauthorised access to protected resources. It can result in complete effortless way for adversary actors to obtain access to sensitive data: all what is needed is to validate the past passwords for given logins (usually one and the same email address) in databases that aggregate data from 3rd party breaches. Cumulative records are being circulated on underground markets that enable an easy and instant source of information for login details, for example as described in December 2017 1.4 billion credentials in clear text, or partially available to the public forums at exploit.in. The following sites can confirm if given logins/emails were reported previously in publicly available breaches: Have I been pwned?, or breachalarm.com.</p>
+<br>
+ <p>Access to multiple authentication systems can be secured with best practices and a solid password manager that: </p>
+<p>  • replaces the need to remember complex and long passwords for each authentication mechanism: cloud provider, website, etc. </p>
+<p>  • changes frequently passwords for each system, for example every 90 days </p>
+<p>  • does not re-use the same values for any password </p>
+<p>  • avoids “incremental changes” that are frequent among users and easy to brute-force via Mask Attack </p>
+<p>  • ends the session (logs out) after set period of time to invalidate current session login token </p>
+
+            
+<br>
+
+<p>The most efficient way to limit the risk of phishing and re-use of previous passwords is to employ “strong” multifactor authentication that consists of more than one factor from three base ones (knowledge, inheritance, possession), supplemented by secondary attributes: context, patterns, etc. Practical solutions and examples of integrations are documented e.g. by FIDO Alliance, in their strong authentication frameworks:</p> 
+<p>  1. Passwordless UAF </p> 
+<p>  2. Second Factor U2F </p> 
+                       
+  </div>
+
+   
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    
+    <hr>
+
+   <footer>
+        <p>   &copy 2018 Juliusz Idzik, Regon: 240613260, VAT: 6681782939, Company No: 6408 </p>
+        
+         </footer>
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <!-- jQuery library (served from Google) -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="/js/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/lib/jquery.bxslider.css" rel="stylesheet" />
+        
+        
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+
+
+    </body>
+</html>

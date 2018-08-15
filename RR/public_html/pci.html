@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  
+
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content=" SOX - COSO - RISK - NIST - PCI - DSS - CYBER - GDPR">
+        <meta name="keywords" content="pci,dss,gdpr,cyber,risk,nist,sox,coso">
+        <meta name="author" content="IDZIK J">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootswatch.min.css">
+
+            <style>
+                    .carousel-inner > .item > img,
+                    .carousel-inner > .item > a > img {
+                    width: 100%;
+                    margin: auto;
+                                }   
+  
+        </style>
+        
+       
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+ <div class="container">   
+   <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">Home </a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+          <li>
+              
+            </li>
+            <li>
+              <a href="gdpr.html">GDPR </a>
+            </li>
+            <li>
+             <a href="bppp.html">PCI DSS </a>
+            </li>
+          <li>
+            <a href="scf.html">PSD2</a></li><li><a href="contact.html">Contact</a>
+            </li>
+       
+          </ul>
+
+
+
+        </div>
+    </div>
+    </div>
+        
+       
+      <div class="container">
+             <br>
+          <h4>The Payment Card Industry (PCI) Data Security Standard (DSS)</h4>
+           <br>  
+          <p>PCI DSS is designed by <a href="https://www.pcisecuritystandards.org" target="_blank"> The PCI Security Standards Council </a> to ensure that all organizations that store, process, or transmit cardholder data do so in a secure environment. </p> 
+  
+      </div>
+        
+              <div class="container">
+        
+               <div class="row">
+                   
+       
+                   
+      <div class="col-md-4">
+           
+       
+       
+   <h4><a href="bpo.html">PCI DSS implementation for TPSP </a></h4>     
+  <div class="thumbnail">
+                    <a href="bpo.html" class="thumbnail">
+                    <img src="img/x5.png" alt="Login">
+      
+<a class="btn btn-default" href="bpo.html" role="button">PCI DSS implementation &raquo;</a>
+
+        </div> 
+         
+             
+       </div> 
+                   
+                     <div class="col-md-4">
+           
+      
+      <h4><a href="bppp.html">PCI settlements as finite-state machine </a></h4>
+                              <div class="thumbnail">
+                    <a href="bppp.html" class="thumbnail">
+                    <img src="img/x9.png" alt="Kali">
+      
+<a class="btn btn-default" href="bppp.html" role="button">PCI settlements &raquo;</a>
+
+        </div>        
+                          
+               </div>
+                   
+                          <div class="col-md-4">
+                
+         <h4><a href="tlspci.html">PCI SSL/TLS migration </a></h4>
+            <div class="thumbnail">
+                    <a href="tlspci.html" class="thumbnail">
+                    <img src="img/tlspci.png" alt="Login">
+      
+<a class="btn btn-default" href="tlspci.html" role="button">PCI SSL/TLS &raquo;</a>
+
+        </div> 
+                  </div>  
+                   
+               </div>
+         
+  </div> 
+
+        <div class="container">
+
+    
+
+              <h4>PCI DSS interpretation gap </h4>     
+            
+               <p>PCI Sensitive Authentication Data (SAD) in clear-text over public networks</p> 
+             
+              <p><strong>Use-case</strong></p> 
+              <p>A cardholder is being sent a SMS (text message) to their registered mobile number, with PIN (for physical only) or card security code (CVC2/CVV2), as a reminder in case these details are forgotten – card is issued as "virtual/plastic card”</p> 
+             
+              <p><strong>Question</strong></p>
+                <p>Which requirement of PCI DSS 3.2 prevents sending an element of SAD (PIN, CVC2, CVV2) in clear-text over public network if card number is not being transmitted as part of the same message?</p>                
+
+<p><strong>Reference</strong></p> 
+<p>Requirement 4: Encrypt transmission of cardholder data across open, public networks: Sensitive information must be encrypted during transmission over networks …</p>
+<p>Requirement 4.1: “Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks, …”</p>
+<p>Cardholder Data in Glossary: At a minimum, cardholder data consists of the full PAN…</p>
+<p>Sensitive Authentication Data in Glossary: Security-related information (including but not limited to card validation codes/values, full track data (from the magnetic stripe or equivalent on a chip), PINs, and PIN blocks)…</p>
+          
+                      <p><strong>Conclusion</strong></p> 
+                      <p>PCI DSS is very prescriptive about transmitting of card numbers over public networks, but does not address “sensitive authentication data” in the same manner, so either:</p> 
+<p>PCI DSS 3.2 does not prohibit to transmit an element of SAD (PIN/CVC2/CVV2) in clear-text if PAN is not present in the message (e.g. PIN reminder sent in clear-text over http) - which may seem strange considering strict requirements of “no storage of SAD after authorisation”, in conjunction with transmitting of SAD in clear-text</p>
+<p>PCI DSS 3.2 starts req. 4 with “sensitive information”, and req. 4.1 refers to “sensitive cardholder data” but neither is strictly defined within the standard, and glossary contains only the terms of “cardholder data” and SAD - “sensitive cardholder data” is referenced on PCI DSS website: (…everything at the end of red arrow…): https://www.pcisecuritystandards.org/pci_security/why_security_matters</p> 
+           
+<p><strong>Solution</strong></p>
+                         <p>PCI DSS with next version, could be more rigorous in defining what kinds of data fall under the scope the of req. 4.1, and what the term “sensitive cardholder data” consists of in details? Currently one may conclude that if the transmission of PIN, CVC2/CVV2 over public network does not contain full card number it can be sent in clear-text…(If however that is the intention of the Council it would be good to clarify the interpretation)</p> 
+                        
+                       
+                      
+  </div>
+         
+  
+        
+        
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+     
+    <hr>
+
+    <footer>
+        <p>   &copy 2018 Juliusz Idzik, Regon: 240613260, VAT: 6681782939, Company No: 6408 </p>
+        
+         </footer>
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <!-- jQuery library (served from Google) -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="/js/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/lib/jquery.bxslider.css" rel="stylesheet" />
+        
+        
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+
+
+    </body>
+</html>
